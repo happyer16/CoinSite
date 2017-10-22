@@ -1,11 +1,24 @@
-import express from 'express'
+// Dependencies
+// ----------------------------------------------------------
+import express from 'express';
+import api from './routes';
+// setup router & static directory
 
-const app=express();  // express 서버 생성
+// Express Configuration
+// ----------------------------------------------------------
+const app = express(); // express 서버 생성
+const port = 3000;
 
-app.get('/',(req,res)=>{
-  res.send("Hi, our first service");
+// Routes
+// ----------------------------------------------------------
+app.use('/api', api);
+
+// Listen
+// ----------------------------------------------------------
+app.get('/', (req, res) => {
+  res.send('Hi, our first service');
 });
 
-app.listen(3000, function () {
+app.listen(port, () => {
   console.log('Example app listening on port 3000!');
 });
