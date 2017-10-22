@@ -1,1 +1,6 @@
-{"parser": "babel-eslint"}
+{
+  "extends": "airbnb",
+  "rules": {
+    "linebreak-style": 0
+  }
+}
