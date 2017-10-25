@@ -1,6 +1,16 @@
 {
-  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "extends": ["airbnb","plugin:react/recommended"],
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "prop-types": 0,
+    "prefer-template": 0,
+    "no-path-concat": 0,
+    "comma-dangle": ["error", "never"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], //Restrict file extensions that may contain JSX
+    "react/prefer-stateless-function": 0
   }
 }
