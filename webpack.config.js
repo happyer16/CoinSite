@@ -1,6 +1,8 @@
 module.exports = {
-  entry: './src/index.js',
-
+  entry: [
+    './src/index.js',
+    './src/style.css'
+  ],
   output: {
     path: __dirname + '/public/',
     filename: 'bundle.js'
@@ -16,6 +18,10 @@ module.exports = {
           cacheDirectory: true,
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css-loader'
       }
     ]
   }
