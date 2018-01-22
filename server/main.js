@@ -7,7 +7,7 @@ import bodyParser from 'body-parser'; // PARSE HTML BODY
 
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
-
+import path from 'path';
 // import api from './routes';
 // setup router & static directory
 
@@ -29,8 +29,19 @@ app.use(bodyParser.json());
 
 // Listen
 // ----------------------------------------------------------
-app.get('/', (req, res) => {
-  res.send('Hi, our first service');
+app.use('/', express.static(path.join(__dirname, './../public')));
+/* support client-side routing */
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './../public/index.html'));
+});
+app.get('/hello', (req, res) => {
+    return res.send('Hello CodeLab');
+});
+
+/* handle error */
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 app.listen(port, () => {

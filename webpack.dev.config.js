@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
 
@@ -17,6 +18,9 @@ module.exports = {
     filename: 'bundle.js'
   },
 
+  resolve: {
+       root: path.resolve('./src')
+  },
   // 개발서버 설정입니다
   devServer: {
     hot: true,
@@ -44,7 +48,8 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 
   module: {
