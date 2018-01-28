@@ -53,9 +53,9 @@ class Coin extends React.Component {
       <tr>
         <td> {this.props.name} </td>
         <td> {this.props.coinAmount} </td>
-        <td> {this.props.buyAvg} KRW </td>
-        <td> {this.props.buyAmount} KRW </td>
-        <td> {this.props.evaluationAmount} KRW</td>
+        <td> {Number(this.props.buyAvg).toLocaleString('en')} KRW </td>
+        <td> {Number(this.props.buyAmount).toLocaleString('en')} KRW </td>
+        <td> {Number(this.props.evaluationAmount).toLocaleString('en')} KRW</td>
       </tr>
     );
   }
