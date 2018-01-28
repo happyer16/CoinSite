@@ -63,7 +63,9 @@ module.exports = {
           presets: ['es2015', 'react'],
           plugins: ['react-hot-loader/babel']
         }
-      }
+      },
+
+      { test: /\.scss$/, loader: 'style!css!sass' }
     ]
   }
 

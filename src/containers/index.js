@@ -1,4 +1,5 @@
 import React from 'react';
+import './CoinList.scss';
 
 class App extends React.Component {
     render(){
@@ -23,7 +24,7 @@ class CoinList extends React.Component {
     return (
       <div>
         <h1> 투자내역 </h1>
-        <table>
+        <table className="CoinList">
           <tr>
             <th>보유코인</th>
             <th>보유수량</th>
