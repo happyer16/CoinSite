@@ -16,8 +16,8 @@ class CoinList extends React.Component {
   render() {
     return (
       <div>
-        <h1> 투자내역 </h1>
         <table className="CoinList">
+          {/* Table Header */}
           <tr>
             <th>보유코인</th>
             <th>보유수량</th>
@@ -25,6 +25,8 @@ class CoinList extends React.Component {
             <th>매수금액</th>
             <th>평가금액</th>
           </tr>
+
+          {/* Table Row ( Coin ) */}
         {this.state.coinData.map((coin,i) => {
           return (<Coin name = {coin.name}
                         coinAmount = {coin.coinAmount}
