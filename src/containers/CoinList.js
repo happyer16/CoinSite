@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './CoinList.scss';
 import Coin from './Coin';
 
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
+
 class CoinList extends React.Component {
 
   constructor(props){
@@ -42,4 +46,15 @@ class CoinList extends React.Component {
   }
 }
 
-export default CoinList;
+const mapStateToProps = (state) => {
+  return {
+    name :state.name
+  };
+};
+
+const mapDispatchProps = (dispatch) => {
+  return {
+    handleAddCoin: (name) => { dispatch(actions.addCoin(name))}
+  };
+};
+export default connect(mapStateToProps, mapDispatchProps)(CoinList);
