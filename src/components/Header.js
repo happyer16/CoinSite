@@ -1,6 +1,5 @@
 import React from 'react';
 import Websocket from 'react-websocket';
-import AddCoin from '../containers/AddCoin';
 
 class Header extends React.Component {
   render() {
@@ -19,7 +18,6 @@ class Header extends React.Component {
                                <a><i className="material-icons">vpn_key</i></a>
                            </li>
                            <li>
-                               <AddCoin onAddClick={coin => console.log('add coin',coin)} />
                                <button className="btn waves-effect waves-light" type="submit" name="action"> 더하기 </button>
                            </li>
                        </ul>

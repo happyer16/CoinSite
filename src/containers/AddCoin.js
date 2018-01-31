@@ -1,25 +1,34 @@
-import React, { findDOMNode, Component, PropTypes} from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
+import { addCoin } from '../actions'
 
-class AddCoin extends Component{
-  render() {
-    return (
-      <div>
-        <input type='text' ref='input' />
-        <button onClick={e => this.handleClick(e)}>
-          Add
+let AddCoin = ({ dispatch }) => {
+  let input
+
+  return (
+    <div>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          if (!input.value.trim()) {
+            return
+          }
+          dispatch(addCoin(input.value))
+          input.value = ''
+        }}
+      >
+        <input
+          ref={node => {
+            input = node
+          }}
+        />
+        <button type="submit">
+          Add Todo
         </button>
-      </div>
-    );
-  }
-
-  handleClick(e) {
-    console.log('hi');
-    this.props.onAddClick('hi');
-  }
+      </form>
+    </div>
+  )
 }
+AddCoin = connect()(AddCoin)
 
-AddCoin.propTypes = {
-  onAddClick : PropTypes.func.isRequired
-};
-
-export default AddCoin;
+export default AddCoin
