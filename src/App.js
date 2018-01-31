@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from './components';
-import { CoinList, Coin, Setting } from './containers';
+import { Header, Coin, CoinList } from './components';
+import { Setting } from './containers';
 
 class App extends React.Component {
     render(){

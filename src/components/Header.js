@@ -1,6 +1,6 @@
 import React from 'react';
 import Websocket from 'react-websocket';
-import AddCoin from './AddCoin';
+import AddCoin from '../containers/AddCoin';
 
 class Header extends React.Component {
   render() {

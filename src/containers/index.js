@@ -1,7 +1,6 @@
-import CoinList from './CoinList';
-import Coin from './Coin';
+import AddCoin from './AddCoin';
 import Setting from './Setting';
 
 export {
-  CoinList, Coin, Setting
+  AddCoin, Setting
 };
