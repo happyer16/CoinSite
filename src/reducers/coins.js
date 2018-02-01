@@ -6,6 +6,17 @@ import update from 'react-addons-update';
 //   name: 'eth'
 // };
 
+const coin = (state,action) => {
+  switch(action.type) {
+    case types.ADD_COIN:
+      return {
+        id: action.id,
+        name: action.name
+      };
+    default:
+      return state;
+  }
+}
 function coins(state = [], action){
 
   console.log('state : ');
@@ -14,13 +25,10 @@ function coins(state = [], action){
   console.log(action);
   switch (action.type) {
     case types.ADD_COIN :
-    [
-      ...state,
-      {
-        id: action.id,
-        text: action.name,
-      }
-    ]
+      return [
+        ...state, coin(undefined,action)
+      ];
+
     default :
       return state;
   }

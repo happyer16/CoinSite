@@ -13,18 +13,7 @@ class App extends React.Component {
           <div>
             <Header/>
             <AddCoin />
-            <VisibleCoinList coins = {
-              [
-                {
-                  id: 100,
-                  name : 'eth2'
-                },
-                {
-                  id : 101,
-                  name : 'eth3'
-                }
-              ]
-            }/>
+            <VisibleCoinList />
           </div>
       );
     }

@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
 import coins from './coins'
 
-const coinApp = combineReducers({
+export default combineReducers({
   coins
-})
-
-export default coinApp;
+});
