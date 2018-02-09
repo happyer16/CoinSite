@@ -36,14 +36,22 @@ app.use('/', express.static(path.join(__dirname, './../public')));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './../public/index.html'));
 
-  http.request('http://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.KRW-ETH&count=2&to=2018-02-08%2005:10:00',function(res){
-    console.log('hi');
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-    console.log('BODY: ' + chunk);
-  });
-  }).end();
-
+  setInterval( () => {
+    /**
+      RETURN
+        openingPrice
+        highPrice
+        lowPrice
+        tradePrice
+    */
+    http.request('http://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.KRW-ETH&count=1&to=2018-02-08%2005:10:00',function(res){
+      res.setEncoding('utf8');
+      res.on('data', function (result) {
+        var data = JSON.parse(result)[0];
+        console.log('Price : ' + data.tradePrice);
+      });
+    }).end();
+  },1000);
 });
 app.get('/hello', (req, res) => {
     return res.send('Hello CodeLab');
