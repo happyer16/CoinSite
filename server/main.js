@@ -11,7 +11,6 @@ import path from 'path';
 import cors from 'cors';
 // import api from './routes';
 // setup router & static directory
-
 var http = require('http');
 var socketio=require('socket.io')(http);
 
@@ -36,6 +35,15 @@ app.use('/', express.static(path.join(__dirname, './../public')));
 /* support client-side routing */
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './../public/index.html'));
+
+  http.request('http://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.KRW-ETH&count=2&to=2018-02-08%2005:10:00',function(res){
+    console.log('hi');
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+  }).end();
+
 });
 app.get('/hello', (req, res) => {
     return res.send('Hello CodeLab');
