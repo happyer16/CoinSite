@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Header, Coin, CoinList } from './components';
-import { Setting,AddCoin, VisibleCoinList } from './containers';
+import { Coin, CoinList } from './components';
+import { Header, Setting, AddCoin, VisibleCoinList } from './containers';
 import { addCoin } from './actions';
 
 class App extends React.Component {

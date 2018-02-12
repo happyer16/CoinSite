@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import { App } from './App';
 import reducer from './reducers';
 import { addCoin } from './actions';
+import { Login, Register } from './containers';
 import configureStore from './store/index';
+
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 const store = configureStore(reducer ,{
 	"coins" : [
@@ -27,6 +30,14 @@ store.subscribe(listen);
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-  <Provider store={store}><App /></Provider>,
+  <Provider store={store}>
+		<Router history = { browserHistory }>
+			<Route path = "/" component = { App }>
+				<IndexRoute component={ App }/>
+				<Route path = "login" component = { Login }/>
+				<Route path = "register" component = { Register }/>
+			</Route>
+		</Router>
+	</Provider>,
   rootElement
 );
