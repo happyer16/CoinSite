@@ -14,6 +14,7 @@ class App extends React.Component {
             <Header/>
             <AddCoin />
             <VisibleCoinList />
+            { this.props.children }
           </div>
       );
     }
