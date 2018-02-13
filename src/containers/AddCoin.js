@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addCoin } from '../actions'
-import axios from 'axios';
 
 class AddCoin extends React.Component {
   render() {
@@ -24,12 +23,7 @@ class AddCoin extends React.Component {
               input = node
             }}
           />
-          <button type="submit" onClick = {
-            e => {
-              axios.get('/api/coin/info')
-              .then(response => { console.log(response); })
-            }
-          }>
+          <button type="submit">
             Add Todo
           </button>
         </form>
