@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './CoinList.scss';
 import Coin from './Coin';
 import { connect } from 'react-redux';
@@ -23,7 +25,7 @@ class CoinList extends React.Component {
                   <th>매수평균가</th>
                   <th>매수금액</th>
                   <th>평가금액</th>
-
+                  <th>{}</th>
           </tr>
 
           {/* Table Row ( Coin ) */}

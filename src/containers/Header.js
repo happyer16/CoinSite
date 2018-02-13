@@ -1,13 +1,14 @@
 import React from 'react';
-import Websocket from 'react-websocket';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 class Header extends React.Component {
   render() {
     const loginButton = (
       <li>
-        <a>
+        <Link to="/login">
           <i className="material-icons">vpn_key</i>
-        </a>
+        </Link>
       </li>
     );
 
@@ -39,13 +40,13 @@ class Header extends React.Component {
            </div>
          </nav>
       </div>
-       );
+    );
   }
 }
 
 Header.propTypes = {
-    isLoggedIn: React.PropTypes.bool,
-    onLogout: React.PropTypes.func
+    isLoggedIn: PropTypes.bool,
+    onLogout: PropTypes.func
 };
 
 Header.defaultProps = {
