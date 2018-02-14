@@ -22,6 +22,25 @@ const devPort = 4000;
 const app = express(); // express 서버 생성
 const port = 3000;
 
+// database
+import mongoose from 'mongoose';
+import session from 'express-session';
+
+/* mongodb connection */
+const db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', () => { console.log('Connected to mongodb server'); });
+mongoose.connect('mongodb://localhost/codelab');
+
+/* use session */
+app.use(session({
+  secret: 'CodeLab1$1$234',
+  resave: false,
+  saveUninitialized: true
+}));
+
+
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
