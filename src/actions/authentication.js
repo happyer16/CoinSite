@@ -8,7 +8,8 @@ import {
   AUTH_REGISTER_FAILURE,
   AUTH_GET_STATUS,
   AUTH_GET_STATUS_SUCCESS,
-  AUTH_GET_STATUS_FAILURE
+  AUTH_GET_STATUS_FAILURE,
+  AUTH_LOGOUT
 } from './ActionTypes';
 
 /* Login */
@@ -76,7 +77,7 @@ export function getStatusRequest() {
       // Inform Get Status API is starting
       dispatch(getStatus());
 
-      return axios.get('/api/aacount/getInfo')
+      return axios.get('/api/account/getInfo')
       .then((response) => {
         dispatch(getStatusSuccess(response.data.info.username));
       }).catch((error) => {
@@ -96,4 +97,19 @@ export const getStatusSuccess = (username) => ({
 
 export const getStatusFailure = () => ({
   type: AUTH_GET_STATUS_FAILURE
+});
+
+
+/* Logout */
+export function logoutRequest() {
+  return (dispatch) => {
+    return axios.post('/api/account/logout')
+    .then((response) => {
+      dispatch(logout());
+    })
+  }
+}
+
+export const logout = () => ({
+  type: AUTH_LOGOUT
 });
