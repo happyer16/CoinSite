@@ -1,5 +1,5 @@
 import React from 'react';
-import Authentication from 'components';
+import Authentication from '../components/Authentication';
 
 import { connect } from 'react-redux';
 import { registerRuquest } from 'actions/authentication';
@@ -12,7 +12,7 @@ class Register extends React.Component {
   }
 
   handleRegister(id,pw) {
-    return this.props.handleRegister(id,pw).then(
+    return this.props.registerRuquest(id,pw).then(
       () => {
         if(this.props.status === "SUCCESS") {
           Materialize.toast('Success! Please log in.', 2000);

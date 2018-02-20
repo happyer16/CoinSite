@@ -97,6 +97,15 @@ class Authentication extends React.Component {
                 onClick={this.handleLogin}>SUBMIT</a>
           </div>
         </div>
+
+        <div className="footer">
+           <div className="card-content">
+             <div className="right" >
+              New Here? <Link to="/register">Create an account</Link>
+             </div>
+           </div>
+        </div>
+
       </div>
     );
 
