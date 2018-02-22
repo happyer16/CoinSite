@@ -121,7 +121,7 @@ router.get('/getinfo', (req,res) => {
   LOGOUT: POST /api/account/logout
 */
 router.post('/logout', ( req,res ) => {
-  req.session.destory( err => { if(err) throw err; });
+  req.session=null;
   return res.json({ success: true });
 });
 export default router;

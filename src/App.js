@@ -84,7 +84,8 @@ class App extends React.Component {
           { isAuth ?
             undefined :
             <div>
-              <Header/>
+              <Header isLoggedIn={this.props.status.isLoggedIn}
+                      onLogout={this.handleLogout}/>
               <AddCoin />
               <VisibleCoinList />
             </div>
@@ -101,17 +102,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getStatusRequest: () => {
-      return dispatch(getStatusRequest());
-    },
-    logoutRequest: () => {
-      return dispatch(logoutRequest());
-    }
+    getStatusRequest: () => dispatch(getStatusRequest()),
+    logoutRequest: () => dispatch(logoutRequest())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App) ;
 
-// export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
