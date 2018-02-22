@@ -19,7 +19,7 @@ module.exports = {
   },
 
   resolve: {
-       root: path.resolve('./src')
+    root: path.resolve('./src')
   },
   // 개발서버 설정입니다
   devServer: {
@@ -63,7 +63,9 @@ module.exports = {
           presets: ['es2015', 'react'],
           plugins: ['react-hot-loader/babel']
         }
-      }
+      },
+
+      { test: /\.scss$/, loader: 'style!css!sass' }
     ]
   }
 

@@ -1,3 +1,5 @@
-import Header from './Header';
+import Coin from './Coin';
+import CoinList from './CoinList';
+import Authentication from './Authentication';
 
-export { Header };
+export { Coin, CoinList, Authentication };

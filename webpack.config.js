@@ -7,7 +7,7 @@ module.exports = {
     path: __dirname + '/public/',
     filename: 'bundle.js'
   },
-  
+
   resolve: {
        root: path.resolve('./src')
   },
@@ -22,7 +22,10 @@ module.exports = {
           cacheDirectory: true,
           presets: ['es2015', 'react']
         }
-      }
+      },
+
+      { test: /\.scss$/, loader: 'style!css!sass' }
+
     ]
   }
 };

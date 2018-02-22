@@ -1,11 +1,10 @@
-import React from 'react';
-import { Header } from '../components';
+import AddCoin from './AddCoin';
+import Setting from './Setting';
+import VisibleCoinList from './VisibleCoinList';
+import Header from './Header';
+import Login from './Login';
+import Register from './Register';
 
-class App extends React.Component {
-    render(){
-      return (
-            <Header/>
-      );
-    }
-}
-export { App };
+export {
+  AddCoin, Header, Setting, VisibleCoinList, Login, Register
+};
