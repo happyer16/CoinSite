@@ -21,11 +21,11 @@ class CoinList extends React.Component {
           {/* Table Header */}
           <tr>
             <th>보유코인</th>
-                  <th>보유수량</th>
-                  <th>매수평균가</th>
-                  <th>매수금액</th>
-                  <th>평가금액</th>
-                  <th>{}</th>
+            <th>보유수량</th>
+            <th>매수평균가</th>
+            <th>매수금액</th>
+            <th>현재금액</th>
+            <th>평가금액</th>
           </tr>
 
           {/* Table Row ( Coin ) */}
@@ -33,7 +33,7 @@ class CoinList extends React.Component {
           return (<Coin name = {coin.name}
                         coinAmount = {coin.coinAmount}
                         buyAvg = {coin.buyAvg}
-                        buyAmount ={coin.buyAmount}
+                        buySum ={coin.buySum}
                         evaluationAmount={coin.evaluationAmount}
                         key = {i}
                   />);

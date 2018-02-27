@@ -48,6 +48,7 @@
     "semantic-ui-react": "^0.77.2",
     "socket.io": "^2.0.4",
     "style-loader": "^0.20.1"
+    "socket.io-client": "^2.0.4",
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

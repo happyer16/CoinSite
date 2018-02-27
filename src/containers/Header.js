@@ -32,9 +32,6 @@ class Header extends React.Component {
              <div className="right">
                <ul>
                  { this.props.isLoggedIn ? logoutButton : loginButton }
-                 <li>
-                   <button className="btn waves-effect waves-light" type="submit" name="action"> 더하기 </button>
-                 </li>
                </ul>
              </div>
            </div>

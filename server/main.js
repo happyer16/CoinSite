@@ -80,11 +80,33 @@ io.sockets.on('connection', function(socket) {
     console.log('message 이벤트를 서버가 받았습니다.');
     console.log(message);
 
+    io.sockets.emit('message',message);
     if(message.recepient == 'ALL'){
       console.log('모든 클라이언트에게 message 이벤트를 전송합니다.');
       io.sockets.emit('message',message);
     }
-  })
+  });
+
+  socket.on('coinPrice',(coinName) => {
+    console.log('Server : ' + coinName + ' 가격 조회 요청이 왔습니다.')
+    setInterval( () => {
+      /**
+        RETURN
+          openingPrice
+          highPrice
+          lowPrice
+          tradePrice
+      */
+      http.request('http://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.KRW-'+coinName,function(res){
+        res.setEncoding('utf8');
+        res.on('data', function (result) {
+          var data = JSON.parse(result)[0];
+          socket.emit('coinPrice',data.tradePrice);
+          return {price: data.tradePrice};
+        });
+      }).end();
+    },1000);
+  });
 });
 
 
