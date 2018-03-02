@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Coin, CoinList, Main } from './components';
+import { Coin, CoinList, Main, AddCoinDialog } from './components';
 import { Header, Setting, AddCoin, VisibleCoinList } from './containers';
 import { addCoin } from './actions';
 
@@ -87,6 +87,7 @@ class App extends React.Component {
               <Header isLoggedIn={this.props.status.isLoggedIn}
                       onLogout={this.handleLogout}/>
               <AddCoin />
+              <AddCoinDialog />
               <VisibleCoinList />
             </div>
           }
