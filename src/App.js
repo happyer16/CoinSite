@@ -86,7 +86,6 @@ class App extends React.Component {
             <div>
               <Header isLoggedIn={this.props.status.isLoggedIn}
                       onLogout={this.handleLogout}/>
-              <AddCoin />
               <AddCoinDialog />
               <VisibleCoinList />
             </div>
