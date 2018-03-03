@@ -13,15 +13,15 @@ class Coin extends React.Component {
   }
 
   componentDidMount() {
-    const socket = io('http://localhost:4000');
-    socket.on('connect', () => { console.log('웹 소켓 서버에 연결되었습니다.')} );
-    socket.on('message', (message) => { console.log(JSON.stringify(message))} );
-    socket.on('coinPrice',(coinprice) => {
-      this.setState({
-          price: coinprice
-      });
-    });
-    socket.emit('coinPrice', this.props.name);
+    // const socket = io('http://localhost:4000');
+    // socket.on('connect', () => { console.log('웹 소켓 서버에 연결되었습니다.')} );
+    // socket.on('message', (message) => { console.log(JSON.stringify(message))} );
+    // socket.on('coinPrice',(coinprice) => {
+    //   this.setState({
+    //       price: coinprice
+    //   });
+    // });
+    // socket.emit('coinPrice', this.props.name);
   }
 
   render() {

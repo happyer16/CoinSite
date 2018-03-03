@@ -1,6 +1,5 @@
 import React from 'React';
 import Modal from 'react-modal';
-import { Button } from 'semantic-ui-react';
 
 const customStyles = {
   content : {
@@ -43,10 +42,10 @@ class AddCoinDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button class="ui basic button" onClick={this.openModal}>
+        <button class="ui basic button" onClick={this.openModal}>
           <i class="money bill alternate icon"/>
           Open Modal
-        </Button>
+        </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
