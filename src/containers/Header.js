@@ -5,37 +5,28 @@ import { Link } from 'react-router';
 class Header extends React.Component {
   render() {
     const loginButton = (
-      <li>
-        <Link to="/login">
-          <i className="material-icons">vpn_key</i>
+        <Link to="/login" className="ui inverted button">
+          Log in
         </Link>
-      </li>
     );
 
     const logoutButton = (
-      <li>
-        <a onClick={this.props.onLogout}>
-          <i className="material-icons">lock_open</i>
+        <a className="ui inverted button" onClick={this.props.onLogout}>
+          Logout
         </a>
-      </li>
     );
 
     return (
-      <div>
-         <nav>
-           <div className="nav-wrapper blue darken-1">
-             <a className="brand-logo center">나의 성공 투자 지갑</a>
-             <ul>
-               <li><a><i className="material-icons">search</i></a></li>
-             </ul>
-
-             <div className="right">
-               <ul>
-                 { this.props.isLoggedIn ? logoutButton : loginButton }
-               </ul>
-             </div>
-           </div>
-         </nav>
+      <div className="ui inverted menu">
+        <div className="ui container">
+         <a className="header item">
+          <img className="logo" src="img/icon/login_title.png"/>
+             투자내역
+         </a>
+         <div className="right item">
+          { this.props.isLoggedIn ? logoutButton : loginButton }
+         </div>
+        </div>
       </div>
     );
   }

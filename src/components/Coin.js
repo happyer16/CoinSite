@@ -40,7 +40,7 @@ class Coin extends React.Component {
         <td> {Number(this.props.buyAvg).toLocaleString('en')} KRW </td>
         <td> {Number(this.props.buySum).toLocaleString('en')} KRW </td>
         <td> {Number(this.state.price).toLocaleString('en')} KRW </td>
-        <td style={this.props.coinAmount>=100 ? plusStyle : minusStyle}> {Number(this.state.price * this.props.coinAmount).toLocaleString('en')} KRW</td>
+        <td className={this.props.coinAmount>=100 ? 'positive' : 'negative'}> {Number(this.state.price * this.props.coinAmount).toLocaleString('en')} KRW</td>
       </tr>
     );
   }

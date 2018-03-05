@@ -64,26 +64,31 @@ class Authentication extends React.Component {
   }
   render() {
     const inputBoxes = (
-      <div>
-        <div className="input-field col s12 username">
-          <label>Username</label>
-          <input
-          name="username"
-          type="text"
-          className="validate"
-          value={this.state.username}
-          onChange={this.handleChange}
-          />
+      <div className="ui stacked segment">
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="user icon"/>
+            <input
+              name="username"
+              type="text"
+              placeholder="E-mail address"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
         </div>
-        <div className="input-field col s12">
-          <label>Password</label>
-          <input
-          name="password"
-          type="password"
-          className="validate"
-          value={this.state.password}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}/>
+
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="lock icon"/>
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}/>
+          </div>
         </div>
       </div>
     );
@@ -93,16 +98,14 @@ class Authentication extends React.Component {
         <div className="card-content">
           <div className="row">
             {inputBoxes}
-            <a className="waves-effect waves-light btn"
-                onClick={this.handleLogin}>SUBMIT</a>
+            <div className="ui fluid large teal submit button"
+                onClick={this.handleLogin}>LOGIN</div>
           </div>
         </div>
 
-        <div className="footer">
-           <div className="card-content">
-             <div className="right" >
+        <div className="ui message">
+           <div className="right" >
               New Here? <Link to="/register">Create an account</Link>
-             </div>
            </div>
         </div>
 
@@ -113,21 +116,23 @@ class Authentication extends React.Component {
        <div className="card-content">
          <div className="row">
            {inputBoxes}
-           <a className="waves-effect waves-light btn"
-               onClick={this.handleRegister}>CREATE</a>
+           <div className="ui fluid large teal submit button"
+               onClick={this.handleRegister}>CREATE</div>
          </div>
        </div>
     );
 
     return (
-      <div className="container auth">
-        <Link className="logo" to="/">코인지갑</Link>
-        <div className="card">
-          <div className="header blue white-text center">
-            <div className="card-content">{this.props.mode ? "LOGIN" : " REGISTER" }</div>
+      <div className="column">
+        {/* <Link className="logo" to="/">코인지갑</Link> */}
+        {/* Header */}
+        <h2 className="ui teal image header">
+          <img src="img/icon/login_title.png" className="image"/>
+          <div className="content">
+            {this.props.mode ? "LOGIN" : " REGISTER" }
           </div>
-          { this.props.mode ? loginView : registerView }
-        </div>
+        </h2>
+        { this.props.mode ? loginView : registerView }
       </div>
     );
   }

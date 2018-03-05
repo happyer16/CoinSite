@@ -17,27 +17,31 @@ class CoinList extends React.Component {
     const {coins} = this.props;
     return (
       <div>
-        <table className="CoinList">
+        <table className="ui celled table">
           {/* Table Header */}
-          <tr>
-            <th>보유코인</th>
-            <th>보유수량</th>
-            <th>매수평균가</th>
-            <th>매수금액</th>
-            <th>현재금액</th>
-            <th>평가금액</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>보유코인</th>
+              <th>보유수량</th>
+              <th>매수평균가</th>
+              <th>매수금액</th>
+              <th>현재금액</th>
+              <th>평가금액</th>
+            </tr>
+          </thead>
 
           {/* Table Row ( Coin ) */}
-        {coins.map((coin,i) => {
-          return (<Coin name = {coin.name}
-                        coinAmount = {coin.coinAmount}
-                        buyAvg = {coin.buyAvg}
-                        buySum ={coin.buySum}
-                        evaluationAmount={coin.evaluationAmount}
-                        key = {i}
-                  />);
-        })}
+          <tbody>
+            {coins.map((coin,i) => {
+              return (<Coin name = {coin.name}
+                            coinAmount = {coin.coinAmount}
+                            buyAvg = {coin.buyAvg}
+                            buySum ={coin.buySum}
+                            evaluationAmount={coin.evaluationAmount}
+                            key = {i}
+                      />);
+            })}
+          </tbody>
         </table>
       </div>
     );
