@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import Coin from '../models/coin';
 
 const router = express.Router();
 
@@ -30,4 +31,35 @@ router.get('/info', (req,res) => {
   },1000);
 });
 
+/*
+  GET ALL COINS : GET /api/coin
+*/
+router.get('/fetch', (req,res) => {
+  // Search database
+  Coin.find( (err,coins) => {
+    // if(err)
+    //   return res.status(500).send({ error: 'database failure' });
+    // FIXME database 연결 점 임의로 구현
+    return res.json({ name : 'eth'});
+  })
+});
+
+/*
+  COIN ADD : POST /api/coin/register
+  BODY SAMPLE : { "coinname" : "ETH", "amount" : 1000 }
+  TODO ERROR CODES 정의
+*/
+router.post('/register', (req,res) => {
+  // Create Coin
+  let coin = new Coin({
+    coinname: req.body.coinname,
+    amount: req.body.amount
+  });
+
+  // Save in the database
+  coin.save( err => {
+    if(err) throw err;
+    return res.json({ success:true });
+  })
+});
 export default router;
