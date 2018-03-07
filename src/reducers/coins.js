@@ -6,6 +6,10 @@ import update from 'react-addons-update';
 //   name: 'eth'
 // };
 
+const coinsInitialState = {
+    coins: []
+};
+
 const coin = (state,action) => {
   switch(action.type) {
     case types.ADD_COIN:
@@ -17,13 +21,26 @@ const coin = (state,action) => {
       return state;
   }
 }
-function coins(state = [], action){
+
+function coins(state = coinsInitialState, action){
+  console.log(action);
   switch (action.type) {
     case types.ADD_COIN :
       return [
         ...state, coin(undefined,action)
       ];
+    case types.COIN_FETCH_SUCCESS :
+      return update(state, {
+        coins: action.coins
+      });
 
+    case types.COIN_REGISTER :
+      return update(state, {
+        register: {
+          status: { $set: 'WAITING' },
+          error : { $set: -1 }
+        }
+      });
     default :
       return state;
   }
