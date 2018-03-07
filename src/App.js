@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Coin, CoinList, Main, AddCoinDialog } from './components';
-import { Header, Setting, AddCoin, VisibleCoinList } from './containers';
+import { Header, Setting, AddCoin, CoinListContainer } from './containers';
 import { addCoin } from './actions';
 
 import { getStatusRequest, logoutRequest } from 'actions/authentication';
@@ -89,7 +89,7 @@ class App extends React.Component {
               <div className="ui main container">
                 <h2 className="ui header"> 코인투자 내역 </h2>
                 <AddCoinDialog />
-                <VisibleCoinList />
+                <CoinListContainer />
               </div>
             </div>
           }

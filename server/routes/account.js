@@ -42,7 +42,7 @@ router.post('/signup', (req, res) => {
     // Create Account
     let account = new Account({
       username: req.body.username,
-      password: req.body.passwrd
+      password: req.body.password
     });
 
     account.password = account.generateHash(account.password);
@@ -62,7 +62,6 @@ router.post('/signup', (req, res) => {
     1: LOGIN FAILED
 */
 router.post('/signin', (req, res) => {
-
   if( typeof req.body.password !== "string" ){
     return res.status(401).json({
       error: "LOGIN FAILED",
@@ -114,7 +113,7 @@ router.get('/getinfo', (req,res) => {
       });
     }
 
-    res.json({ info: req.session.loginInfo });
+    return res.json({ info: req.session.loginInfo });
 });
 
 /*

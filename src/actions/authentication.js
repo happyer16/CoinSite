@@ -51,7 +51,7 @@ export function registerRuquest(username, password) {
 
     return axios.post('/api/account/signup', { username, password })
     .then((response) => {
-      // SUCCEDE
+      // SUCCESE
       dispatch(registerSuccess(username));
     }).catch((error) => {
       // FAILED
