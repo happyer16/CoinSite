@@ -5,12 +5,14 @@ import { Coin, CoinList, Main, AddCoinDialog } from './components';
 import { Header, Setting, AddCoin, CoinListContainer } from './containers';
 import { addCoin } from './actions';
 
+import { coinRegisterRequest } from'actions/coins';
 import { getStatusRequest, logoutRequest } from 'actions/authentication';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleCoinRegister = this.handleCoinRegister.bind(this);
   }
 
   handleLogout() {
@@ -27,6 +29,15 @@ class App extends React.Component {
         document.cookie = 'key=' + btoa(JSON.stringify(loginData));
       }
     );
+  }
+
+  /* POST COIN */
+  handleCoinRegister(coin) {
+    return this.props.coinRegisterRequest(coin).then(
+      () => {
+        // TODO
+      }
+    )
   }
 
   componentDidMount() {
@@ -88,7 +99,7 @@ class App extends React.Component {
                       onLogout={this.handleLogout}/>
               <div className="ui main container">
                 <h2 className="ui header"> 코인투자 내역 </h2>
-                <AddCoinDialog />
+                <AddCoinDialog onPost={this.handleCoinRegister}/>
                 <CoinListContainer />
               </div>
             </div>
@@ -108,7 +119,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getStatusRequest: () => dispatch(getStatusRequest()),
-    logoutRequest: () => dispatch(logoutRequest())
+    logoutRequest: () => dispatch(logoutRequest()),
+
+    coinRegisterRequest: (coin) => dispatch(coinRegisterRequest(coin))
   }
 }
 

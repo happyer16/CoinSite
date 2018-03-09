@@ -52,8 +52,8 @@ router.get('/fetch', (req,res) => {
 router.post('/register', (req,res) => {
   // Create Coin
   let coin = new Coin({
-    coinname: req.body.coinname,
-    amount: req.body.amount
+    coinname: req.body.coin.coinname,
+    amount: req.body.coin.amount
   });
 
   // Save in the database

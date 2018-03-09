@@ -1,4 +1,4 @@
-# CoupleMap
-커플 지도 앱 만들기
+# CoinSite
+투자한 코인 내역을 보여주는 사이트 개발
 # Contributor
-Kim_Boris, Moon_Kyle, Park_Scott
+taehyun_kim

@@ -6,8 +6,16 @@ import update from 'react-addons-update';
 //   name: 'eth'
 // };
 
-const coinsInitialState = {
-    coins: []
+const initialState = {
+  post: {
+    status: 'INIT',
+    error: -1
+  },
+  coins : [
+		{"id":14, "name":"XMR", "coinAmount":100, "buyAvg":100000, "buySum":10000000, "evaluationAmount":1000000000},
+		{"id":24, "name":"LSK", "coinAmount":1000, "buyAvg":100000, "buySum":100000000, "evaluationAmount":5000000000},
+		{"id":34, "name":"WAVES", "coinAmount":2, "buyAvg":5000, "buySum":10000, "evaluationAmount":10000000}
+	]
 };
 
 const coin = (state,action) => {
@@ -22,8 +30,16 @@ const coin = (state,action) => {
   }
 }
 
-function coins(state = coinsInitialState, action){
-  console.log(action);
+function coins(state, action){
+  // console.log('============START==================')
+  // console.log('reducers - coins.js')
+  // console.log(action.type);
+  // console.log(state);
+  // console.log('===============END================')
+
+  if(typeof state === "undefined")
+    state = initialState;
+
   switch (action.type) {
     case types.ADD_COIN :
       return [
@@ -36,7 +52,7 @@ function coins(state = coinsInitialState, action){
 
     case types.COIN_REGISTER :
       return update(state, {
-        register: {
+        post: {
           status: { $set: 'WAITING' },
           error : { $set: -1 }
         }

@@ -44,12 +44,12 @@ export const fetchFailure = () => ({
 });
 
 /* ADD COIN */
-export function registerRequest(coinname, amount) {
+export function coinRegisterRequest(coin) {
   return (dispatch) => {
     // Inform addcoin API is starting
     dispatch(register());
 
-    return axios.post('/api/coin/register', { coinname, amount })
+    return axios.post('/api/coin/register', { coin })
     .then((response) => {
       // SUCCESE
       dispatch(registerSuccess());

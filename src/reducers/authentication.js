@@ -17,6 +17,12 @@ const initialState = {
 };
 
 export default function authentication(state,action) {
+
+  // console.log('============START==================')
+  // console.log('reducers - authentication.js')
+  // console.log(action.type);
+  // console.log(state);
+  // console.log('===============END================')
   if(typeof state === "undefined")
     state = initialState;
 

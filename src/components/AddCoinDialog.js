@@ -26,6 +26,7 @@ class AddCoinDialog extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
 
   openModal() {
@@ -35,10 +36,21 @@ class AddCoinDialog extends React.Component {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     // this.subtitle.style.color = '#f00';
+    $('.ui.dropdown').dropdown();
   }
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  handlePost() {
+      // TODO 값들을 가져옴
+      this.props.onPost({coinname:'eth', amount: 1000}).then(
+        () => {
+          console.log('AddCoinDialog - Coin 등록 도전!');
+        }
+      )
+      this.closeModal();
   }
 
   render() {
@@ -59,88 +71,119 @@ class AddCoinDialog extends React.Component {
         >
           {/* Dialog Content */}
           <form className="ui form">
-            <h4 className="ui dividing header"> 투자 코인 더하기 </h4>
-
             <div className="field">
-
+            <h4 className="ui dividing header"> 투자 코인 더하기 </h4>
+            </div>
               {/* 투자코인 입력창 */}
-              <label>투자코인</label>
-              <div className="ui simple fluid selection dropdown">
-                <input type="hidden" name="name"/>
-                <div className="default text">Name</div>
-                <i className="dropdown icon"></i>
-                <div className="menu">
-                  <div className="item" data-value="BTC">
-                    <img className="ui mini avatar image" src="./img/icon/coin/bitcoin.png"></img>
-                    비트코인
-                  </div>
-                  <div className="item" data-value="ETH">
-                    <img className="ui mini avatar image" src="./img/icon/coin/ethereum.png"></img>
-                    이더리움
-                  </div>
-                  <div className="item" data-value="XRP">
-                    <img className="ui mini avatar image" src="./img/icon/coin/ripple.webp"></img>
-                    리플
-                  </div>
-                  <div className="item" data-value="BCH">
-                    <img className="ui mini avatar image" src="./img/icon/coin/bitcoin_cash.webp"></img>
-                    비트코인캐시
-                  </div>
-                  <div className="item" data-value="LTC">
-                    <img className="ui mini avatar image" src="./img/icon/coin/litecoin.png"></img>
-                    라이트코인
-                  </div>
-                  <div className="item" data-value="NEO">
-                    <img className="ui mini avatar image" src="./img/icon/coin/neo.webp"></img>
-                    네오
-                  </div>
-                  <div className="item" data-value="ADA">
-                    <img className="ui mini avatar image" src="./img/icon/coin/cardano.jpg"></img>
-                    에이다
-                  </div>
-                  <div className="item" data-value="XLM">
-                    <img className="ui mini avatar image" src="./img/icon/coin/stellar_lumens.webp"></img>
-                    스텔라루멘
-                  </div>
-                  <div className="item" data-value="XMR">
-                    <img className="ui mini avatar image" src="./img/icon/coin/monero.webp"></img>
-                    모네로
-                  </div>
-                  <div className="item" data-value="EOS">
-                    <img className="ui mini avatar image" src="./img/icon/coin/eos.png"></img>
-                    이오스
-                  </div>
-                  <div className="item" data-value="IOT">
-                    <img className="ui mini avatar image" src="./img/icon/coin/iota.png"></img>
-                    아이오타
-                  </div>
-                  <div className="item" data-value="DASH">
-                    <img className="ui mini avatar image" src="./img/icon/coin/dash.webp"></img>
-                    대시
-                  </div>
-                  <div className="item" data-value="XEM">
-                    <img className="ui mini avatar image" src="./img/icon/coin/nem.png"></img>
-                    뉴이코노미무브먼트
-                  </div>
-                  <div className="item" data-value="ETC">
-                    <img className="ui mini avatar image" src="./img/icon/coin/ethereum_classic.webp"></img>
-                    이더리움클래식
-                  </div>
-                  <div className="item" data-value="QTUM">
-                    <img className="ui mini avatar image" src="./img/icon/coin/qtum.png"></img>
-                    퀀텀
-                  </div>
-                  <div className="item" data-value="OMG">
-                    <img className="ui mini avatar image" src="./img/icon/coin/omisego.png"></img>
-                    오미세고
+              <div className="field">
+                <label>투자코인</label>
+                <div className="ui simple fluid selection dropdown">
+                  <input type="hidden" name="name"/>
+                  <div className="default text">Name</div>
+                  <i className="dropdown icon"></i>
+                  <div className="menu">
+                    <div className="item" data-value="BTC">
+                      <img className="ui mini avatar image" src="./img/icon/coin/bitcoin.png"></img>
+                      비트코인
+                    </div>
+                    <div className="item" data-value="ETH">
+                      <img className="ui mini avatar image" src="./img/icon/coin/ethereum.png"></img>
+                      이더리움
+                    </div>
+                    <div className="item" data-value="XRP">
+                      <img className="ui mini avatar image" src="./img/icon/coin/ripple.webp"></img>
+                      리플
+                    </div>
+                    <div className="item" data-value="BCH">
+                      <img className="ui mini avatar image" src="./img/icon/coin/bitcoin_cash.webp"></img>
+                      비트코인캐시
+                    </div>
+                    <div className="item" data-value="LTC">
+                      <img className="ui mini avatar image" src="./img/icon/coin/litecoin.png"></img>
+                      라이트코인
+                    </div>
+                    <div className="item" data-value="NEO">
+                      <img className="ui mini avatar image" src="./img/icon/coin/neo.webp"></img>
+                      네오
+                    </div>
+                    <div className="item" data-value="ADA">
+                      <img className="ui mini avatar image" src="./img/icon/coin/cardano.jpg"></img>
+                      에이다
+                    </div>
+                    <div className="item" data-value="XLM">
+                      <img className="ui mini avatar image" src="./img/icon/coin/stellar_lumens.webp"></img>
+                      스텔라루멘
+                    </div>
+                    <div className="item" data-value="XMR">
+                      <img className="ui mini avatar image" src="./img/icon/coin/monero.webp"></img>
+                      모네로
+                    </div>
+                    <div className="item" data-value="EOS">
+                      <img className="ui mini avatar image" src="./img/icon/coin/eos.png"></img>
+                      이오스
+                    </div>
+                    <div className="item" data-value="IOT">
+                      <img className="ui mini avatar image" src="./img/icon/coin/iota.png"></img>
+                      아이오타
+                    </div>
+                    <div className="item" data-value="DASH">
+                      <img className="ui mini avatar image" src="./img/icon/coin/dash.webp"></img>
+                      대시
+                    </div>
+                    <div className="item" data-value="XEM">
+                      <img className="ui mini avatar image" src="./img/icon/coin/nem.png"></img>
+                      뉴이코노미무브먼트
+                    </div>
+                    <div className="item" data-value="ETC">
+                      <img className="ui mini avatar image" src="./img/icon/coin/ethereum_classic.webp"></img>
+                      이더리움클래식
+                    </div>
+                    <div className="item" data-value="QTUM">
+                      <img className="ui mini avatar image" src="./img/icon/coin/qtum.png"></img>
+                      퀀텀
+                    </div>
+                    <div className="item" data-value="OMG">
+                      <img className="ui mini avatar image" src="./img/icon/coin/omisego.png"></img>
+                      오미세고
+                    </div>
                   </div>
                 </div>
               </div>
 
-            </div>
+              {/* 투자코인 수량*/}
+              <div className="field">
+                <label>보유수량</label>
+                <div className="ui right labeled input">
+                  <input type="text" placeholder="보유 수량을 입력하세요..."/>
+                  <div className="ui basic label">
+                    개
+                  </div>
+                </div>
+              </div>
+
+
+              {/* 투자코인 매수평균가*/}
+              <div className="field">
+                <label> 매수평균가 </label>
+                <div className="ui right labeled input">
+                  <label className="ui label">￦</label>
+                  <input type="text" placeholder="매수 평균가를 입력하세요..." id="buyAvg"/>
+                  <div className="ui basic label">원</div>
+                </div>
+              </div>
+
+              {/* 투자코인 매수 금액*/}
+              <div className="field">
+                <label> 총매수금액 </label>
+                <div className="ui right labeled input">
+                  <label className="ui label">￦</label>
+                  <input type="text" placeholder="매수 총 금액을 입력하세요..." id="buyAvg"/>
+                  <div className="ui basic label">원</div>
+                </div>
+              </div>
           </form>
 
-          <button className="ui tiny blue button">OK</button>
+          <button className="ui tiny blue button" onClick={this.handlePost}>OK</button>
           <button className="ui tiny button" onClick={this.closeModal}>close</button>
         </Modal>
       </div>
