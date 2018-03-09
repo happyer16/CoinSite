@@ -6,14 +6,6 @@ import CoinList from '../components/CoinList'
 import { coinListRequest } from 'actions/coins';
 
 class CoinListContainer extends React.Component {
-
-  componentDidMount(){
-    this.props.coinListRequest().then(
-      () => {
-      }
-    );
-  }
-
   render(){
     return(
       <div>
@@ -44,9 +36,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    coinListRequest: () =>{
-      return dispatch(coinListRequest());
-    }
   }
 }
 

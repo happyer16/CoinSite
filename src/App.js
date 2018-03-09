@@ -5,7 +5,7 @@ import { Coin, CoinList, Main, AddCoinDialog } from './components';
 import { Header, Setting, AddCoin, CoinListContainer } from './containers';
 import { addCoin } from './actions';
 
-import { coinRegisterRequest } from'actions/coins';
+import { coinRegisterRequest, coinListRequest } from'actions/coins';
 import { getStatusRequest, logoutRequest } from 'actions/authentication';
 
 class App extends React.Component {
@@ -35,12 +35,18 @@ class App extends React.Component {
   handleCoinRegister(coin) {
     return this.props.coinRegisterRequest(coin).then(
       () => {
-        // TODO
+        this.props.coinListRequest();
       }
     )
   }
 
   componentDidMount() {
+      // FIXME 로그인인 경우에 request
+      this.props.coinListRequest().then(
+        () => {
+        }
+      );
+
       // get cookie by name
       function getCookie(name) {
         var value = "; " + document.cookie;
@@ -81,6 +87,8 @@ class App extends React.Component {
           }
         }
       );
+
+
     }
 
     render(){
@@ -121,7 +129,10 @@ const mapDispatchToProps = (dispatch) => {
     getStatusRequest: () => dispatch(getStatusRequest()),
     logoutRequest: () => dispatch(logoutRequest()),
 
-    coinRegisterRequest: (coin) => dispatch(coinRegisterRequest(coin))
+    coinRegisterRequest: (coin) => dispatch(coinRegisterRequest(coin)),
+    coinListRequest: () => {
+      return dispatch(coinListRequest());
+    }
   }
 }
 
