@@ -3,24 +3,21 @@ import { connect } from 'react-redux'
 import { toggleCoin } from '../actions'
 import CoinList from '../components/CoinList'
 
-import { fetchCoins } from 'actions/coins';
+import { coinListRequest } from 'actions/coins';
 
 class CoinListContainer extends React.Component {
 
   componentDidMount(){
-    this.props.fetchCoins();
+    this.props.coinListRequest().then(
+      () => {
+      }
+    );
   }
 
   render(){
-    var mockData = [
-  		{"id":14, "name":"XMR", "coinAmount":100, "buyAvg":100000, "buySum":10000000, "evaluationAmount":1000000000},
-  		{"id":24, "name":"LSK", "coinAmount":1000, "buyAvg":100000, "buySum":100000000, "evaluationAmount":5000000000},
-  		{"id":34, "name":"WAVES", "coinAmount":2, "buyAvg":5000, "buySum":10000, "evaluationAmount":10000000}
-  	]
-
     return(
       <div>
-        <CoinList coins={this.props.coins}/>
+        <CoinList coins={this.props.coinData}/>
       </div>
     );
   }
@@ -39,17 +36,16 @@ const getVisibleCoins = (coins, filter) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-
   return {
-    coins: state.coins.coins
+    coins: state.coins.coins,
+    coinData: state.coins.list.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCoins: () =>{
-      return dispatch(fetchCoins());
+    coinListRequest: () =>{
+      return dispatch(coinListRequest());
     }
   }
 }

@@ -11,6 +11,10 @@ const initialState = {
     status: 'INIT',
     error: -1
   },
+  list: {
+    status: 'INIT',
+    data: []
+  },
   coins : [
 		{"id":14, "name":"XMR", "coinAmount":100, "buyAvg":100000, "buySum":10000000, "evaluationAmount":1000000000},
 		{"id":24, "name":"LSK", "coinAmount":1000, "buyAvg":100000, "buySum":100000000, "evaluationAmount":5000000000},
@@ -45,11 +49,32 @@ function coins(state, action){
       return [
         ...state, coin(undefined,action)
       ];
-    case types.COIN_FETCH_SUCCESS :
+
+    /* COIN LIST */
+    case types.COIN_LIST :
       return update(state, {
-        coins: action.coins
+        list : {
+          status: { $set: 'WAITING' }
+        }
       });
 
+    case types.COIN_LIST_SUCCESS :
+      return update(state, {
+        list: {
+          status: { $set: 'SUCCESS' },
+          data: { $set: action.coins }
+        }
+      });
+
+    case types.COIN_LIST_FAILURE :
+      return update(state, {
+        list: {
+          status: { $set: 'FAILURE' }
+        }
+      });
+
+
+    /* COIN REGISTER */
     case types.COIN_REGISTER :
       return update(state, {
         post: {
