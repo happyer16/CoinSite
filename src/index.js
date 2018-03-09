@@ -20,10 +20,10 @@ const store = configureStore(reducers
 // }
 );
 function listen(){
-  console.log('=========================');
-  console.log('index.js store change!!!');
-  console.log(store.getState());
-  console.log('-------------------------');
+  // console.log('=========================');
+  // console.log('index.js store change!!!');
+  // console.log(store.getState());
+  // console.log('-------------------------');
 }
 
 store.subscribe(listen);

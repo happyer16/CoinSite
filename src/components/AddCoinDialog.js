@@ -45,7 +45,7 @@ class AddCoinDialog extends React.Component {
 
   handlePost() {
       // TODO 값들을 가져옴
-      this.props.onPost({coinname:'eth', amount: 1000}).then(
+      this.props.onPost({name:"WAVES", amount:2, buyAvg:5000, buySum:10000}).then(
         () => {
           console.log('AddCoinDialog - Coin 등록 도전!');
         }

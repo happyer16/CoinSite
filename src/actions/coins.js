@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {
-  COIN_FETCH,
-  COIN_FETCH_SUCCESS,
-  COIN_FETCH_FAILURE,
+  COIN_LIST,
+  COIN_LIST_SUCCESS,
+  COIN_LIST_FAILURE,
   COIN_REGISTER,
   COIN_REGISTER_SUCCESS,
   COIN_REGISTER_FAILURE
@@ -14,33 +14,33 @@ export function infoRequest(coinname) {
   }
 }
 
-export function fetchCoins() {
+export function coinListRequest() {
     return (dispatch) => {
-      // Inform fetchCoins API is starting
-      dispatch(fetch());
-      return axios.get('/api/coin/fetch')
+      // Inform coinListRequest API is starting
+      dispatch(coinList());
+      return axios.get('/api/coin')
      .then((response) => {
         // SUCCESE
-         dispatch(fetchSuccess(response));
+         dispatch(coinListSuccess(response.data));
         // FIXME dispatch(fetchSuccess(response.data.coins));
       }).catch((error) => {
         // FAILED
-        dispatch(fetchFailure(error));
+        dispatch(coinListFailure(error));
       });
     }
 }
 
-export const fetch = () => ({
-  type : COIN_FETCH
+export const coinList = () => ({
+  type : COIN_LIST
 });
 
-export const fetchSuccess = (coins) => ({
-  type : COIN_FETCH_SUCCESS,
+export const coinListSuccess = (coins) => ({
+  type : COIN_LIST_SUCCESS,
   coins
 });
 
-export const fetchFailure = () => ({
-  type : COIN_FETCH_FAILURE
+export const coinListFailure = () => ({
+  type : COIN_LIST_FAILURE
 });
 
 /* ADD COIN */
@@ -49,7 +49,7 @@ export function coinRegisterRequest(coin) {
     // Inform addcoin API is starting
     dispatch(register());
 
-    return axios.post('/api/coin/register', { coin })
+    return axios.post('/api/coin', { coin })
     .then((response) => {
       // SUCCESE
       dispatch(registerSuccess());

@@ -34,7 +34,7 @@ class CoinList extends React.Component {
           <tbody>
             {coins.map((coin,i) => {
               return (<Coin name = {coin.name}
-                            coinAmount = {coin.coinAmount}
+                            coinAmount = {coin.amount}
                             buyAvg = {coin.buyAvg}
                             buySum ={coin.buySum}
                             evaluationAmount={coin.evaluationAmount}

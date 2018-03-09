@@ -34,26 +34,27 @@ router.get('/info', (req,res) => {
 /*
   GET ALL COINS : GET /api/coin
 */
-router.get('/fetch', (req,res) => {
+router.get('/', (req,res) => {
   // Search database
-  Coin.find( (err,coins) => {
-    // if(err)
-    //   return res.status(500).send({ error: 'database failure' });
-    // FIXME database 연결 점 임의로 구현
-    return res.json({ name : 'eth'});
+  Coin.find()
+  .exec((err,coins) => {
+    if(err) throw err;
+    res.json(coins);
   })
 });
 
 /*
-  COIN ADD : POST /api/coin/register
-  BODY SAMPLE : { "coinname" : "ETH", "amount" : 1000 }
+  COIN ADD : POST /api/coin
+  BODY SAMPLE : { "name" : "ETH", "amount" : 1000, "buyAvg": 100, "buySum": 1000 * 100 }
   TODO ERROR CODES 정의
 */
-router.post('/register', (req,res) => {
+router.post('/', (req,res) => {
   // Create Coin
   let coin = new Coin({
-    coinname: req.body.coin.coinname,
-    amount: req.body.coin.amount
+    name: req.body.coin.name,
+    amount: req.body.coin.amount,
+    buyAvg: req.body.coin.buyAvg,
+    buySum: req.body.coin.buySum
   });
 
   // Save in the database
