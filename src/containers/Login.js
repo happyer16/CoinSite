@@ -38,7 +38,7 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="ui middle aligned center aligned grid">
         <Authentication mode={true} onLogin={this.handleLogin}/>
       </div>
     );

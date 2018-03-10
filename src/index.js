@@ -10,18 +10,20 @@ import configureStore from './store/index';
 
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
-const store = configureStore(reducers ,{
-	"coins" : [
-		{"id":14, "name":"BitCoin", "coinAmount":100, "buyAvg":100000, "buyAmount":10000000, "evaluationAmount":1000000000},
-		{"id":24, "name":"Ethereum", "coinAmount":1000, "buyAvg":100000, "buyAmount":100000000, "evaluationAmount":5000000000},
-		{"id":34, "name":"LiteCoin", "coinAmount":2, "buyAvg":5000, "buyAmount":10000, "evaluationAmount":10000000}
-	]
-});
+const store = configureStore(reducers
+// 	,{
+// 	"coins" : [
+// 		{"id":14, "name":"XMR", "coinAmount":100, "buyAvg":100000, "buySum":10000000, "evaluationAmount":1000000000},
+// 		{"id":24, "name":"LSK", "coinAmount":1000, "buyAvg":100000, "buySum":100000000, "evaluationAmount":5000000000},
+// 		{"id":34, "name":"WAVES", "coinAmount":2, "buyAvg":5000, "buySum":10000, "evaluationAmount":10000000}
+// 	]
+// }
+);
 function listen(){
-  console.log('=========================');
-  console.log('index.js store change!!!');
-  console.log(store.getState());
-  console.log('-------------------------');
+  // console.log('=========================');
+  // console.log('index.js store change!!!');
+  // console.log(store.getState());
+  // console.log('-------------------------');
 }
 
 store.subscribe(listen);

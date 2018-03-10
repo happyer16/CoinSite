@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import Coin from '../models/coin';
 
 const router = express.Router();
 
@@ -30,4 +31,36 @@ router.get('/info', (req,res) => {
   },1000);
 });
 
+/*
+  GET ALL COINS : GET /api/coin
+*/
+router.get('/', (req,res) => {
+  // Search database
+  Coin.find()
+  .exec((err,coins) => {
+    if(err) throw err;
+    res.json(coins);
+  })
+});
+
+/*
+  COIN ADD : POST /api/coin
+  BODY SAMPLE : { "name" : "ETH", "amount" : 1000, "buyAvg": 100, "buySum": 1000 * 100 }
+  TODO ERROR CODES 정의
+*/
+router.post('/', (req,res) => {
+  // Create Coin
+  let coin = new Coin({
+    name: req.body.coin.name,
+    amount: req.body.coin.amount,
+    buyAvg: req.body.coin.buyAvg,
+    buySum: req.body.coin.buySum
+  });
+
+  // Save in the database
+  coin.save( err => {
+    if(err) throw err;
+    return res.json({ success:true });
+  })
+});
 export default router;

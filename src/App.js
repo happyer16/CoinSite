@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Coin, CoinList, Main } from './components';
-import { Header, Setting, AddCoin, VisibleCoinList } from './containers';
+import { Coin, CoinList, Main, AddCoinDialog } from './components';
+import { Header, Setting, AddCoin, CoinListContainer } from './containers';
 import { addCoin } from './actions';
 
+import { coinRegisterRequest, coinListRequest } from'actions/coins';
 import { getStatusRequest, logoutRequest } from 'actions/authentication';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleCoinRegister = this.handleCoinRegister.bind(this);
   }
 
   handleLogout() {
@@ -29,7 +31,22 @@ class App extends React.Component {
     );
   }
 
+  /* POST COIN */
+  handleCoinRegister(coin) {
+    return this.props.coinRegisterRequest(coin).then(
+      () => {
+        this.props.coinListRequest();
+      }
+    )
+  }
+
   componentDidMount() {
+      // FIXME 로그인인 경우에 request
+      this.props.coinListRequest().then(
+        () => {
+        }
+      );
+
       // get cookie by name
       function getCookie(name) {
         var value = "; " + document.cookie;
@@ -70,6 +87,8 @@ class App extends React.Component {
           }
         }
       );
+
+
     }
 
     render(){
@@ -86,8 +105,11 @@ class App extends React.Component {
             <div>
               <Header isLoggedIn={this.props.status.isLoggedIn}
                       onLogout={this.handleLogout}/>
-              <AddCoin />
-              <VisibleCoinList />
+              <div className="ui main container">
+                <h2 className="ui header"> 코인투자 내역 </h2>
+                <AddCoinDialog onPost={this.handleCoinRegister}/>
+                <CoinListContainer />
+              </div>
             </div>
           }
           { this.props.children }
@@ -105,7 +127,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getStatusRequest: () => dispatch(getStatusRequest()),
-    logoutRequest: () => dispatch(logoutRequest())
+    logoutRequest: () => dispatch(logoutRequest()),
+
+    coinRegisterRequest: (coin) => dispatch(coinRegisterRequest(coin)),
+    coinListRequest: () => {
+      return dispatch(coinListRequest());
+    }
   }
 }
 
