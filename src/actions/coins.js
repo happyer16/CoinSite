@@ -5,7 +5,10 @@ import {
   COIN_LIST_FAILURE,
   COIN_REGISTER,
   COIN_REGISTER_SUCCESS,
-  COIN_REGISTER_FAILURE
+  COIN_REGISTER_FAILURE,
+  COIN_REMOVE,
+  COIN_REMOVE_SUCCESS,
+  COIN_REMOVE_FAILURE
 } from './ActionTypes';
 
 export function infoRequest(coinname) {
@@ -70,4 +73,32 @@ export const registerSuccess = () => ({
 
 export const registerFailure = () => ({
   type : COIN_REGISTER_FAILURE
+});
+
+/* REMOVE COIN */
+export function coinRemoveRequest(id, index) {
+  return (dispatch) => {
+    // Inform removecoin API is starting
+    dispatch(remove());
+
+    return axios.delete('/api/coin/'+id)
+    .then((response) => {
+      // SUCCESS
+      dispatch(removeSuccess(index));
+    }).catch((error) => {
+      dispatch(removeFailure(error.response.data.code));
+    });
+  }
+}
+
+export const remove = () => ({
+  type : COIN_REMOVE
+});
+export const removeSuccess = (index) => ({
+  type : COIN_REMOVE_SUCCESS,
+  index
+});
+export const removeFailure = (error) => ({
+  type : COIN_REMOVE_FAILURE,
+  error
 });

@@ -3,13 +3,24 @@ import { connect } from 'react-redux'
 import { toggleCoin } from '../actions'
 import CoinList from '../components/CoinList'
 
-import { coinListRequest } from 'actions/coins';
+import { coinListRequest, coinRemoveRequest } from 'actions/coins';
 
 class CoinListContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleRemove = this.handleRemove.bind(this);
+  }
+
+  handleRemove(id,index) {
+    this.props.coinRemoveRequest(id,index).then(() => {
+    })
+  }
+
   render(){
     return(
       <div>
-        <CoinList coins={this.props.coinData}/>
+        <CoinList coins={this.props.coinData} onRemove={this.handleRemove}/>
       </div>
     );
   }
@@ -36,6 +47,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    coinRemoveRequest: (id,index) => {
+      return dispatch(coinRemoveRequest(id,index));
+    }
   }
 }
 

@@ -15,6 +15,10 @@ const initialState = {
     status: 'INIT',
     data: []
   },
+  remove: {
+    status: 'INIT',
+    error: -1
+  },
   coins : [
 		{"id":14, "name":"XMR", "coinAmount":100, "buyAvg":100000, "buySum":10000000, "evaluationAmount":1000000000},
 		{"id":24, "name":"LSK", "coinAmount":1000, "buyAvg":100000, "buySum":100000000, "evaluationAmount":5000000000},
@@ -82,6 +86,34 @@ function coins(state, action){
           error : { $set: -1 }
         }
       });
+
+    /* COIN REMOVE */
+    case types.COIN_REMOVE :
+      return update(state, {
+        remove: {
+          status: { $set: 'WAITING' },
+          error: { $set: -1 }
+        }
+      });
+
+    case types.COIN_REMOVE_SUCCESS :
+      return update(state, {
+        remove : {
+          status: { $set: 'SUCCESS' },
+        },
+        list: {
+          data: { $splice: [[action.index, 1]]}
+        }
+      });
+
+    case types.COIN_REMOVE_FAILURE :
+      return update(state, {
+        remove : {
+          status: { $set: 'FAILURE' },
+          error : { $set: action.error }
+        }
+      });
+      
     default :
       return state;
   }

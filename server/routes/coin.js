@@ -63,4 +63,18 @@ router.post('/', (req,res) => {
     return res.json({ success:true });
   })
 });
+
+/*
+  DELETE COIN : DELETE /api/coin/:id
+  ERROR CODES
+    1: INVALID ID
+*/
+router.delete('/:id', (req,res) => {
+  console.log(req.params.id);
+  Coin.remove({_id: req.params.id }, err => {
+    if(err) throw err;
+    res.json({ success: true });
+  })
+
+})
 export default router;
