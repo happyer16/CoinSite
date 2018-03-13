@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -20,13 +20,16 @@ class AddCoinDialog extends React.Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      buyAvg: '',
+      buySum: ''
     };
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handlePost = this.handlePost.bind(this);
+    this.changePriceInput = this.changePriceInput.bind(this);
   }
 
   openModal() {
@@ -40,7 +43,11 @@ class AddCoinDialog extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false,
+      buyAvg: '',
+      buySum: ''
+    });
   }
 
   handlePost() {
@@ -58,6 +65,28 @@ class AddCoinDialog extends React.Component {
         }
       )
       this.closeModal();
+  }
+
+  changePriceInput(e) {
+    var amount = $('#amount').val();
+    if(amount != null){
+      switch(e.target.id){
+        case 'buyAvg':
+          this.setState({
+            buyAvg: e.target.value,
+            buySum: amount*e.target.value
+          });
+          break;
+        case 'buySum':
+          this.setState({
+            buyAvg: e.target.value / amount,
+            buySum: e.target.value
+          });
+          break;
+      }
+      console.log(e.target.id);
+      console.log(e.target.value);
+    }
   }
 
   render() {
@@ -174,7 +203,7 @@ class AddCoinDialog extends React.Component {
                 <label> 매수평균가 </label>
                 <div className="ui right labeled input">
                   <label className="ui label">￦</label>
-                  <input id="buyAvg" type="text" placeholder="매수 평균가를 입력하세요..." />
+                  <input id="buyAvg" type="text" onChange={this.changePriceInput} value={this.state.buyAvg} placeholder="매수 평균가를 입력하세요..." />
                   <div className="ui basic label">원</div>
                 </div>
               </div>
@@ -184,7 +213,7 @@ class AddCoinDialog extends React.Component {
                 <label> 총매수금액 </label>
                 <div className="ui right labeled input">
                   <label className="ui label">￦</label>
-                  <input id="buySum" type="text" placeholder="매수 총 금액을 입력하세요..." />
+                  <input id="buySum" type="text" onChange={this.changePriceInput} value={this.state.buySum} placeholder="매수 총 금액을 입력하세요..." />
                   <div className="ui basic label">원</div>
                 </div>
               </div>
